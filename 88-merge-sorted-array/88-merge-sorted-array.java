@@ -1,6 +1,6 @@
 class Solution {
     public void merge(int[] nums1, int m, int[] nums2, int n) {
-        for(int i=0; i<n; i++,m++){
+        for(int i=0; i<n; i++,m++){ //m++ num1 index inc
             nums1[m]=nums2[i];
         }
         Arrays.sort(nums1);
