@@ -1,15 +1,21 @@
 class Solution {
-    public boolean validPartition(int[] nums) {
-        boolean[] dp = new boolean[nums.length+1];
-        dp[0]=true;
-        for (int i = 2; i <= nums.length; i++){
-            dp[i]|= nums[i-1]==nums[i-2] && dp[i-2]; // cond 1
-            dp[i]|= i>2 && nums[i-1] == nums[i-2] && nums[i-2] == nums[i-3] && dp[i-3]; // cond 2
-            dp[i]|= i>2 && nums[i-1]-nums[i-2]==1 && nums[i-2]-nums[i-3]==1 && dp[i-3]; // cond 3
-        }
-        return dp[nums.length];
+    public boolean validPartition(int[] n) {
+        boolean dp[] = {true, false, n[0] == n[1], false};
+    for (int i = 2; i < n.length; ++i) {
+        boolean two = n[i] == n[i - 1];
+        boolean three = (two && n[i] == n[i - 2]) || (n[i] - 1 == n[i - 1] && n[i] - 2 == n[i - 2]);
+        dp[(i + 1) % 4] = (dp[(i - 1) % 4] && two) || (dp[(i - 2) % 4] && three);
+    }
+    return dp[n.length % 4];
 
-        
+        // boolean[] dp = new boolean[nums.length+1];
+        // dp[0]=true;
+        // for (int i = 2; i <= nums.length; i++){
+        //     dp[i]|= nums[i-1]==nums[i-2] && dp[i-2]; // cond 1
+        //     dp[i]|= i>2 && nums[i-1] == nums[i-2] && nums[i-2] == nums[i-3] && dp[i-3]; // cond 2
+        //     dp[i]|= i>2 && nums[i-1]-nums[i-2]==1 && nums[i-2]-nums[i-3]==1 && dp[i-3]; // cond 3
+        // }
+        // return dp[nums.length];      
 //             if x == n:
 //                 return true
 //             if x+1 < n and nums[x] == nums[x+1] and ans(x+2):
