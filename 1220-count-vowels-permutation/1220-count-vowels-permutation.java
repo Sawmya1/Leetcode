@@ -17,7 +17,7 @@ class Solution {
             u = u2;
         }
         
-        long ans=(a + e + i + o + u)% mod;
+        long ans =(a + e + i + o + u) % mod;
         return (int) ans;
         
     }
