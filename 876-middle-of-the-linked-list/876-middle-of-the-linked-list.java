@@ -10,7 +10,14 @@
  */
 class Solution {
     public ListNode middleNode(ListNode head) {
-       //int n = head.size();
+        ListNode slow = head, fast = head;
+        while(fast != null && fast.next != null){
+            //inmese ek bhi false hua toh nahi chalega
+            slow = slow.next;
+            fast = fast.next.next;
+        } 
+        return slow;
+        //int n = head.size();
 //         ListNode temp = head;
 //         int count = 0;
 //         while (temp != null)
@@ -30,20 +37,20 @@ class Solution {
 //             current = current.next;
 //         }
 //     return head;      
-        int countNodes = 0;
-        ListNode currNode = head;
+//         int countNodes = 0;
+//         ListNode currNode = head;
         
-        // loop to count the number of nodes
-        while(currNode != null){
-            countNodes++;
-            currNode = currNode.next;
-        }
+//         // loop to count the number of nodes
+//         while(currNode != null){
+//             countNodes++;
+//             currNode = currNode.next;
+//         }
         
-        currNode = head;
-        for(int i = 0; i < countNodes/2; i++)   
-            currNode = currNode.next;
+//         currNode = head;
+//         for(int i = 0; i < countNodes/2; i++)   
+//             currNode = currNode.next;
         
-        return currNode;
+//         return currNode;
 
     }
 }
