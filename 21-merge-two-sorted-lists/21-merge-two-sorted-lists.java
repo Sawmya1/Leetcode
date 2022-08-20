@@ -14,16 +14,24 @@ class Solution {
             return l2;
         if(l2 == null)
             return l1;
-        if(l1.val <l2.val){
-            l1.next = mergeTwoLists(l1.next, l2);
-            return l1;
+        if(l1.val > l2.val){
+            ListNode temp = l1;
+            l1 = l2;
+            l2 = temp;
         }
-        else{
-            l2.next = mergeTwoLists(l1, l2.next);
-            return l2;
-        }    
-        
-        
+        ListNode res = l1; //head pointer to retrive all the nodes
+       while(l1 != null && l2 != null){
+        ListNode tmp = null;
+        while(l1 != null && l1.val <= l2.val){
+            tmp = l1;
+            l1 = l1.next;
+        }
+        tmp.next = l2;
+        ListNode temp = l1;
+        l1 = l2;
+        l2 = temp;
+       }
+     return res;
     }
 }
 /*
