@@ -1,24 +1,23 @@
 class Solution {
     public int minimumDeviation(int[] nums) {
-        PriorityQueue<Integer> pq = new PriorityQueue<>(Collections.reverseOrder());
-        int minVal = Integer.MAX_VALUE;
-        for (int num : nums) {
-            if (num % 2 == 1)
-                num = num * 2;
-            pq.offer(num);
-            minVal = Math.min(minVal, num);
+              PriorityQueue<Integer> pq=new PriorityQueue<>(Collections.reverseOrder());
+        int minValue=Integer.MAX_VALUE;
+        for(int x:nums){
+            if((x&1)==1)
+                x<<=1;
+            pq.add(x);
+            minValue=Math.min(minValue,x);
         }
-        int minDeviation = Integer.MAX_VALUE;
-        while (true) {
-            int maxVal = pq.poll();
-            minDeviation = Math.min(minDeviation, maxVal - minVal);
-            if (maxVal % 2 == 1)
+        int minDeviation=Integer.MAX_VALUE;
+        while(!pq.isEmpty()){
+            int curr=pq.poll();
+            minDeviation=Math.min(minDeviation,curr-minValue);
+            if((curr&1)==1)
                 break;
-            maxVal = maxVal / 2;
-            minVal = Math.min(minVal, maxVal);
-            pq.offer(maxVal);
+            curr>>=1;
+            minValue=Math.min(minValue,curr);
+            pq.add(curr);
         }
         return minDeviation;
-
     }
 }
