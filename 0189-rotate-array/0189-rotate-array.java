@@ -1,6 +1,6 @@
 class Solution {
     public void rotate(int[] nums, int k) {
-                int n = nums.length;
+        int n = nums.length;
         k = k % n;
         if (k == 0 || n == 0 || n == k) {
             return;
